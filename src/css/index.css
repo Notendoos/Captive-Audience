@@ -43,7 +43,8 @@ html, body {
   color: #262626; }
 
 main {
-  margin-left: 6rem; }
+  margin-left: 6rem;
+  padding-left: 1rem; }
 
 .main-nav {
   position: absolute;
@@ -161,3 +162,32 @@ main {
   .classroom__video.video-classmate video {
     width: 100%;
     height: 100%; }
+
+.classroom__chat-box {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  padding: 2rem;
+  background-color: #f1f1f1; }
+
+.classroom__chat-message {
+  margin-bottom: .5rem; }
+  .classroom__chat-message.message-teacher {
+    align-self: flex-end; }
+    .classroom__chat-message.message-teacher span {
+      background: #ff8566; }
+  .classroom__chat-message.message-table {
+    align-self: flex-end; }
+    .classroom__chat-message.message-table span {
+      background: #ff8566;
+      background: #cce3de; }
+  .classroom__chat-message span {
+    display: inline-block;
+    background: #a4c3b2;
+    color: #262626;
+    padding: .75rem;
+    border-radius: 5px; }
+
+.classroom__tables {
+  margin-top: 1rem;
+  padding: 2rem; }

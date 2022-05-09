@@ -44,4 +44,40 @@ $component: 'classroom';
             height: 100%;
         }
     }
+    &__chat-box{
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        padding: 2rem;
+        background-color: $color-gray;
+    }
+    &__chat-message{
+        margin-bottom: .5rem;
+        &.message{
+            &-teacher{
+                align-self: flex-end;
+                span{
+                    background: $color-orange;
+                }
+            }
+            &-table{
+                align-self: flex-end;
+                span{
+                    background: $color-orange;
+                    background: $color-green--light;
+                }
+            }
+        }
+        span{
+            display: inline-block;
+            background: $color-green;
+            color: $color-black;
+            padding: .75rem;
+            border-radius: 5px;
+        }
+    }
+    &__tables{
+        margin-top: 1rem;
+        padding: 2rem;
+    }
 }
