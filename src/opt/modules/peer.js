@@ -1,5 +1,5 @@
 let myVideoStream
-const videoContainer = document.querySelector('.classroom__video')
+const videoContainer = document.querySelector('.video-personal')
 const myVideo = document.createElement("video");
 
 myVideo.id = 'userVideo'
