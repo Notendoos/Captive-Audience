@@ -1,0 +1,45 @@
+<nav class="main-nav menu-closed">
+    <div class="main-nav__btn">
+        <div class="main-nav__btn-slice"></div>
+        <div class="main-nav__btn-slice"></div>
+        <div class="main-nav__btn-slice"></div>
+    </div>
+    <span>
+    </span>
+    <div class="main-nav__list-container">
+        <ul class="main-nav__list">
+            <li class="main-nav__list-item <% if (page_name === 'home') { %>item-active<% } %>">
+                <a class="main-nav__list-url" href="/">
+                    <span class="main-nav__list-icon">
+                        <% include ../svg/home.ejs %> 
+                    </span>
+                    <span class="main-nav__list-label">Home</span>
+                </a>
+            </li>
+            <li class="main-nav__list-item <% if (page_name === 'classes') { %>item-active<% } %>">
+                <a class="main-nav__list-url" href="/classes">
+                    <span class="main-nav__list-icon">
+                        <% include ../svg/door.ejs %> 
+                    </span>
+                    <span class="main-nav__list-label">Classes</span>
+                </a>
+            </li>
+            <li class="main-nav__list-item <% if (page_name === 'workgroups') { %>item-active<% } %>">
+                <a class="main-nav__list-url" href="/workgroups">
+                    <span class="main-nav__list-icon">
+                        <% include ../svg/group.ejs %> 
+                    </span>
+                    <span class="main-nav__list-label">Workgroups</span>
+                </a>
+            </li>
+            <li class="main-nav__list-item <% if (page_name === 'settings') { %>item-active<% } %>">
+                <a class="main-nav__list-url" href="/settings">
+                    <span class="main-nav__list-icon">
+                        <% include ../svg/settings.ejs %> 
+                    </span>
+                    <span class="main-nav__list-label">Settings</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

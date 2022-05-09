@@ -1,0 +1,21 @@
+*,*:after,*:before{
+    border: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: $font-stack-primary;
+    font-style: normal;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html,body{
+    color: $color-black;
+}
+
+main{
+    margin-left: 6rem;
+}

@@ -1,0 +1,75 @@
+$component: 'main-nav';
+$menu-icon-size: 1.5rem;
+.#{$component}{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh; 
+    padding: 3rem 2rem;
+    z-index: 9;
+    background-color: $color-gray;
+    box-shadow: $shadow-main;
+
+    border-radius: 0 20px 20px 0;
+
+    &__btn{
+        width: $menu-icon-size;
+        height: $menu-icon-size;
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+    }
+    &__btn-slice{
+        background: $color-black;
+        width: 100%;
+        height: 15%;
+        border-radius: 10px;
+        margin-bottom: 10%;
+        &:nth-child(3){
+            width: 66%;
+        }
+    }
+    &__list-container{
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        flex-direction: column;
+    }
+    &__list-item{
+        transition: .3s ease all;
+        &:hover{
+            color: rgba($color-black, .75);
+        }
+        &:not(:last-child){
+            margin-bottom: 1rem;
+        }
+        &.item-active{
+            color: $color-red;
+            &:hover{
+                color: $color-orange;
+            }
+        }
+    }
+    &__list-icon{
+        display: inline-block;
+        svg{
+            max-width: $menu-icon-size;
+            max-height: $menu-icon-size;
+        }
+    }
+    &__list-label{
+        transform: translateY(-35%);
+        margin-left: .25rem;
+        
+        .#{$component}.menu-closed &{
+            display: none;
+        }
+        .#{$component}.menu-open &{
+            display: inline-block;
+        }
+    }
+    a{
+        display: block;
+        color: inherit;
+    }
+}

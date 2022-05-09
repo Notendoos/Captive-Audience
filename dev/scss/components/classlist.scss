@@ -1,0 +1,34 @@
+$component: 'classlist';
+
+.#{$component}{
+    padding: 2rem;
+    &__title{
+        position: relative;
+        margin-bottom: 1rem;
+        letter-spacing: .2rem;
+        text-transform: uppercase;
+    }
+    &__list{
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        margin-left: -1rem;
+    }
+    &__link{
+        display: block;
+        color: $color-black;
+    }
+    &__list-item{
+        background: $color-gray;
+        padding: 2rem 1.75rem;
+        margin: .5rem;
+        border-radius: 20px;
+        width: 300px;
+    }
+    &__list-item-label{
+        display: block;
+        &:not(:last-child){
+            margin-bottom: 1rem;
+        }       
+    }
+}

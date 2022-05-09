@@ -1,0 +1,20 @@
+<section class="classlist">
+    <h1 class="classlist__title">Vandaag</h1>
+    <ul class="classlist__list">
+        <% rooms.forEach((room,i)=>{%>
+            <li class="classlist__list-item">
+                <a class="classlist__link" href="/classes/<%= room.id %>/<%= room.name.replace(/ /g,"_") %>">
+                    <span class="classlist__list-item-label classlist__name">
+                        <%= room.name %>
+                    </span>
+                    <span class="classlist__list-item-label classlist__teacher">
+                        <%= room.teacher %>
+                    </span>
+                    <span class="classlist__list-item-label classlist__timestamp">                        
+                        <%= room.timestamp %>
+                    </span>
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+</section>
