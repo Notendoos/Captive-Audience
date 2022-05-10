@@ -4,6 +4,7 @@ $component: 'classroom';
     &__container{
         display: flex;
         flex-wrap: wrap;
+        max-width: 1300px;
         &>*{
             flex-basis: 50%;
         }
