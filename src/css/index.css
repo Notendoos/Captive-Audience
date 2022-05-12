@@ -27,6 +27,7 @@
   font-display: swap; }
 
 *, *:after, *:before {
+  line-height: 1;
   border: none;
   margin: 0;
   padding: 0;
@@ -47,7 +48,7 @@ main {
   margin-left: 120px; }
 
 .main-nav {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
