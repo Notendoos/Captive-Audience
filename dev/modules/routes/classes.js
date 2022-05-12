@@ -1,53 +1,110 @@
 const express = require('express')
 const route = express.Router()
+let baseUrl = '/img/profile'
 
-let roomIDs = [
+let roomsData = [
     {
         id:"11b9eea8",
-        name:"Inleiding Programeren 1",
-        teacher:"J. Faber",
-        timestamp:"12:00-13:00"
+        name:"Marketing 101",
+        teacher:"H. Drift",
+        timestamp:{
+            start: "12:00",
+            end:"14:30"
+        },
+        present:{
+            teacher:{
+                present:true,
+                image:`${baseUrl}/pf5.png`
+            },
+            students:{
+                present:true,
+                amount: 20,
+                images:[`${baseUrl}/pf2.png`,`${baseUrl}/pf3.png`,`${baseUrl}/pf4.png`,`${baseUrl}/pf5.png`,`${baseUrl}/pf6.png`,`${baseUrl}/pf7.png`]
+            }
+        }
     },
     {
         id:"33321eb4",
-        name:"Inleiding Programeren 2",
-        teacher:"J. Faber",
-        timestamp:"13:00-14:00"
+        name:"Internet Standaarden",
+        teacher:"B. McMillan",
+        timestamp:{
+            start: "15:00",
+            end:"16:30"
+        },
+        present:{
+            teacher:{
+                present:true,
+                image:`${baseUrl}/pf7.png`
+            },
+            students:{
+                present:true,
+                amount: 3,
+                images:[`${baseUrl}/pf2.png`,`${baseUrl}/pf3.png`,`${baseUrl}/pf4.png`,`${baseUrl}/pf5.png`,`${baseUrl}/pf6.png`,`${baseUrl}/pf7.png`]
+            }
+        }
     },
     {
         id:"715d361e",
-        name:"Inleiding Programeren 3",
-        teacher:"J. Faber",
-        timestamp:"14:00-15:00"
+        name:"Human Computer Interaction",
+        teacher:"E. Webster",
+        timestamp:{
+            start: "17:30",
+            end:"17:45"
+        },
+        present:{
+            teacher:{
+                present:true,
+                image:`${baseUrl}/pf6.png`
+            },
+            students:{
+                present:false,
+                amount: 3,
+                images:[`${baseUrl}/pf2.png`,`${baseUrl}/pf3.png`,`${baseUrl}/pf4.png`,`${baseUrl}/pf5.png`,`${baseUrl}/pf6.png`,`${baseUrl}/pf7.png`]
+            }
+        }
     },
+]
+let roomsDataNext = [
     {
         id:"865d361e",
-        name:"Inleiding Programeren 4",
-        teacher:"J. Faber",
-        timestamp:"15:00-16:00"
+        name:"Internet Standaarden",
+        teacher:"B. McMillan",
+        timestamp:{
+            start: "15:00",
+            end:"16:30"
+        }
     },
     {
         id:"11c9b843",
-        name:"Inleiding Programeren 5",
-        teacher:"J. Faber",
-        timestamp:"16:00-17:00"
+        name:"Human Computer Interaction",
+        teacher:"E. Webster",
+        timestamp:{
+            start: "17:30",
+            end:"17:45"
+        }
     },
 ]
 
 route.get("/classes",(req,res)=>{
-    res.status(200).render("classes/classes.ejs",{page_name:'classes',rooms:roomIDs})
+    res.status(200).render("classes/classes.ejs",{page_name:'classes',rooms:roomsData,roomsNext:roomsDataNext})
 })
 
-route.get("/classes/:class/:name",(req,res)=>{
-    res.status(200).render("classes/classroom.ejs",{page_name:'classes',meeting:true})
-
-    let io = res.locals.io
-    io.on('connection',(ws)=>{
-        ws.on('join-room',(roomID, userID)=>{
-            ws.join(roomID)
-            ws.to(roomID).broadcast.emit(`User ${userID} connected`,userID)
-        })
+route.get("/classes/:id/:name",(req,res)=>{
+    let roomData = roomsData.find((x)=>{
+        return x.id == req.params.id
     })
+    if(roomData){
+        res.status(200).render("classes/classroom.ejs",{page_name:'classes',room:roomData})
+        let io = res.locals.io
+        io.on('connection',(ws)=>{
+            ws.on('join-room',(roomID, userID)=>{
+                ws.join(roomID)
+                ws.to(roomID).broadcast.emit(`User ${userID} connected`,userID)
+            })
+        })
+    }else{
+        res.redirect('/classes')
+    }
 })
 
 

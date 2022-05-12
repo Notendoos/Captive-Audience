@@ -1,0 +1,59 @@
+$component: 'user-bubble';
+$bubble-offset: -1.5rem;
+
+.#{$component}{
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    background-color: $color-white;
+    overflow: hidden;
+    margin: .5rem auto;
+    &.teacher{
+        background-color: $color-yellow;
+    }
+    &.student{
+        background-color: $color-purple--light;
+        margin-left: $bubble-offset;
+        z-index: 4;
+        &+&{
+            background-color: $color-purple;
+            z-index: 3;
+            margin-left: $bubble-offset;
+        }
+        &+&+&{
+            background-color: $color-purple--dark;
+            margin-left: $bubble-offset;
+            z-index: 2;
+        }
+        &+&+&+&{
+            background-color: $color-purple--darker;
+            margin-left: $bubble-offset;
+            z-index: 1;
+        }
+    }
+    &.text{
+        background-color: $color-purple--light;
+        margin-left: $bubble-offset;
+        z-index: 5;
+        span{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: .875rem;
+            text-align: center;
+            transform: translate(-50%,-50%);
+        }
+    }
+    &__image{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: calc(100% + 5px);
+        object-fit: cover;
+        transform: translate(-50%,-50%);
+    }
+    &__group{
+        display: flex;
+        margin-left: -$bubble-offset;
+    }
+}

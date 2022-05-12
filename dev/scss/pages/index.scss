@@ -1,0 +1,10 @@
+$component: 'home';
+
+.#{$component}{
+    padding: 2rem 0;
+    &__heading{
+        margin-left: 2rem;
+        margin-bottom: 2rem;
+        font-size: 3em;
+    }
+}

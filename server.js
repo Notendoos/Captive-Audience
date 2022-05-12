@@ -33,10 +33,12 @@ app.use(function(req,res,next){
 })
 
 const index = require('./dev/modules/routes/index')
+const messages = require('./dev/modules/routes/messages')
 const classes = require('./dev/modules/routes/classes')
 const workgroups = require('./dev/modules/routes/workgroups')
 const notFound = require('./dev/modules/routes/notfound')
 app.use('/',index)
+app.use('/',messages)
 app.use('/',classes)
 app.use('/',workgroups)
 app.use('/',notFound)

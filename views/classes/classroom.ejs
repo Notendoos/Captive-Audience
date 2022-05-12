@@ -1,9 +1,14 @@
 <% include ../partials/header.ejs %>
 
 <main class="classroom">
+    <h1 class="classroom__heading">
+        <%= room.name %>
+    </h1>
     <div class="classroom__container">
         <div class="classroom__teacher-container">
-            <div class="classroom__video video-teacher"></div>
+            <div class="classroom__video video-teacher">
+                <video src="/files/video/teacher.mp4" muted autoplay loop></video>
+            </div>
         </div>
         <div class="classroom__table-container">
             <div class="classroom__video video-personal"></div>

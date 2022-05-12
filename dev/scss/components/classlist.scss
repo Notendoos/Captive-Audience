@@ -5,30 +5,84 @@ $component: 'classlist';
     &__title{
         position: relative;
         margin-bottom: 1rem;
-        letter-spacing: .2rem;
-        text-transform: uppercase;
+        font-size: 2rem;
+        font-family: $font-poppins-regular;
     }
     &__list{
         display: flex;
         justify-content: flex-start;
         flex-wrap: wrap;
-        margin-left: -1rem;
+        margin: 2rem 0;
     }
     &__link{
+        height: 100%;
         display: block;
         color: $color-black;
-    }
-    &__list-item{
-        background: $color-gray;
-        padding: 2rem 1.75rem;
-        margin: .5rem;
-        border-radius: 20px;
-        width: 300px;
+        background: $color-black;
+        padding: 2rem 1rem;
+        width: 250px;
+        margin-right: 3rem;
     }
     &__list-item-label{
         display: block;
+        color: $color-white;
         &:not(:last-child){
             margin-bottom: 1rem;
         }       
+    }
+    &__list-container{
+        min-height: 90px;
+        &:not(:last-child){
+            margin-bottom: 2rem;
+        }
+        span + &{
+            margin-top: 8rem;
+            min-height: auto;
+        }
+    }
+    &__name{
+        font-size: 1.5em;
+    }
+    &__teacher{
+        font-style: italic;
+        font-size: 1.25em;
+    }
+    &__timestamp{
+        display: inline-block;
+        position: absolute;
+        right: -1rem;
+        padding: .5rem 1rem .25rem 1rem;
+        font-size: 1.5em;
+        color: $color-black;
+        background-color: $color-white;
+        box-shadow: $shadow-main;
+        transform: translateY(-1rem);
+        .start,
+        .end{
+            color: $color-green;
+        }
+    }
+    &__present-label{
+        z-index: 1;
+        &:before{
+            content:"";
+            display: block;
+            position: absolute;
+            height: 100%;
+            width: calc(100% + 2rem);
+            left: -1rem;
+            top: 50%;
+            padding: 1rem;
+            transform: translateY(-50%);
+            z-index: -1;
+            background-color: $color-white;
+        }
+    }
+    &__present-container{
+        display: flex;
+        justify-content: space-around;
+        padding-top: 2rem;
+        color: $color-white;
+        text-align: center;
     }
 }
