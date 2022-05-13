@@ -21,6 +21,74 @@ $component: 'classroom';
     &__heading{
         font-size: 3em;
     }
+    &__controls{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        top: 0;
+        right: 0;
+        text-align: right;
+    }
+    &__control-divider{
+        height: 1.75rem;
+        width: 4px;
+        top: 50%;
+        margin: 0 .75rem;
+        border-radius: 4px;
+        background-color: rgba($color-white,.5);        
+        transform: translateY(.75rem);
+    }
+    &__control-group{
+        display: flex;
+        .button{
+            position: relative;
+            height: 3rem;
+            width: 3rem;
+            border-radius: 50%;
+            &:not(:last-child){
+                margin-right: 1rem;
+            }
+            &-sq{
+                border-radius: 5px;
+            }
+            &-purple{
+                background-color: rgba($color-purple, 1);
+            }
+            &-red{
+                background-color: rgba($color-red--dark, 1);
+            }
+            svg{
+                position: absolute;
+                max-width: 1.75rem;
+                max-height: 1.75rem;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
+            span{
+                position: absolute;
+                right: 50%;
+                width: 300px;
+                transform: translateX(50%);
+                bottom: -1rem;
+                opacity: 0;
+                transition: .3s ease all;
+                text-align: center;
+            }
+            &:hover span{
+                opacity: 1;
+                bottom: -1.33rem;
+            }
+        }
+        .status{
+            &--on{
+                background-color: rgba($color-green--dark, 1);
+            }
+            &--off{
+                background-color: rgba($color-red--dark, 1);
+            }
+        }
+    }
     &__chat-container,
     &__tables-container{
         margin-top: .625rem;
@@ -116,7 +184,7 @@ $component: 'classroom';
         position: relative;
         background-color: $color-gray--light;
         padding: 1rem 1rem 1rem calc(80px + 1rem);
-        height: 500px;
+        height: 380px;
     }
     &__chat-channel{
         position: absolute;

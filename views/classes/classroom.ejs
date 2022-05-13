@@ -8,22 +8,23 @@
             </h1>
             <div class="classroom__controls">
                 <div class="classroom__control-group">
-                    <div>
-                        <div></div>
+                    <div class="button status--on">
+                        <% include ../svg/video.ejs %>
                         <span>Turn off Camera</span>
                     </div>
-                    <div>
-                        <div></div>
+                    <div class="button status--on">
+                        <% include ../svg/mic.ejs %>
                         <span>Mute Mic</span>
                     </div>
                 </div>
+                <div class="classroom__control-divider"></div>
                 <div class="classroom__control-group">
-                    <div>
-                        <div></div>
+                    <div class="button button-sq button-purple">
+                        <% include ../svg/table.ejs %>
                         <span>Create workgroup with current table</span>
                     </div>
-                    <div>
-                        <div></div>
+                    <div class="button button-sq button-red">
+                        <% include ../svg/exitClass.ejs %>
                         <span>Leave Class</span>
                     </div>
                 </div>

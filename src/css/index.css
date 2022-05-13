@@ -254,6 +254,62 @@ main {
 .classroom__heading {
   font-size: 3em; }
 
+.classroom__controls {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  text-align: right; }
+
+.classroom__control-divider {
+  height: 1.75rem;
+  width: 4px;
+  top: 50%;
+  margin: 0 .75rem;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(0.75rem); }
+
+.classroom__control-group {
+  display: flex; }
+  .classroom__control-group .button {
+    position: relative;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%; }
+    .classroom__control-group .button:not(:last-child) {
+      margin-right: 1rem; }
+    .classroom__control-group .button-sq {
+      border-radius: 5px; }
+    .classroom__control-group .button-purple {
+      background-color: #7d7cde; }
+    .classroom__control-group .button-red {
+      background-color: #b61d29; }
+    .classroom__control-group .button svg {
+      position: absolute;
+      max-width: 1.75rem;
+      max-height: 1.75rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+    .classroom__control-group .button span {
+      position: absolute;
+      right: 50%;
+      width: 300px;
+      transform: translateX(50%);
+      bottom: -1rem;
+      opacity: 0;
+      transition: .3s ease all;
+      text-align: center; }
+    .classroom__control-group .button:hover span {
+      opacity: 1;
+      bottom: -1.33rem; }
+  .classroom__control-group .status--on {
+    background-color: #49ab81; }
+  .classroom__control-group .status--off {
+    background-color: #b61d29; }
+
 .classroom__chat-container, .classroom__tables-container {
   margin-top: .625rem; }
 
@@ -327,7 +383,7 @@ main {
   position: relative;
   background-color: #f1f1f7;
   padding: 1rem 1rem 1rem calc(80px + 1rem);
-  height: 500px; }
+  height: 380px; }
 
 .classroom__chat-channel {
   position: absolute;
