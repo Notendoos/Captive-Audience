@@ -5,13 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="icon.png">
-    <title>CA - Prototype</title>
+    <title>CA - <%= page_name %></title>
     <link rel="stylesheet" href="/opt/index.css">
-    <% if(typeof meeting !== 'undefined' ){if(meeting == true ){ %>
-        {# <script src="/js/dist/peerjs.js"></script> #}
-        <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
-        <script src="/js/dist/socketio.js"></script>
-    <% }} %>
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script src="/js/dist/socketio.js"></script>
+    <script> 
+        const port = "<%= port %>";
+        const roomID = "<%= roomID %>"
+        const roomName = "<%= room.name.replace(/ /g,'_') %>"
+    </script>
 </head>
 <body>
 <% include ./menu.ejs %> 

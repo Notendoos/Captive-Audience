@@ -1,10 +1,19 @@
 import * as peer from './modules/peer.js'
-import * as socket from './modules/socket.js'
+const videoContainer = document.querySelector('.classroom__student-container')
+
 const app = {
     init: () => {        
-        if(peer.check()){
+        if(app.check()){
             peer.init()
-            socket.init()
+        }
+    },
+    check: ()=>{
+        if(videoContainer){
+            console.log('classroom')
+            return true
+        }else{
+            console.log('classroomn\'t')
+            return false
         }
     }
 };
