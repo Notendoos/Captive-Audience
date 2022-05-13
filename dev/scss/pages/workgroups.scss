@@ -1,10 +1,28 @@
 $component: 'workgroups';
 
 .#{$component}{
-    padding: 2rem 0;
+    &__heading-content-container{
+        max-width: $max-width;
+        margin: auto;
+    }
+    &__heading-container{
+        padding: 2rem;
+        color: $color-white;
+        background-color: $color-black;
+    }
+    &__container{
+        margin: auto;
+        padding: .625rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: $max-width;
+    }
     &__heading{
-        margin-left: 2rem;
-        margin-bottom: 2rem;
         font-size: 3em;
+    }
+    &__container{
+        max-width: $max-width;
+        margin: auto;
     }
 }

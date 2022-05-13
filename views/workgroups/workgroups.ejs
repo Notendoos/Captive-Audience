@@ -1,9 +1,14 @@
 <% include ../partials/header.ejs %>
 
 <main class="workgroups">
-    <h1 class="workgroups__heading">
-        Workgroups
-    </h1>
+    <div class="workgroups__heading-container">
+        <div class="workgroups__heading-content-container">
+            <h1 class="workgroups__heading">
+                <%= page_name.charAt(0).toUpperCase() + page_name.slice(1); %>
+            </h1>
+        </div>
+    </div>
+    <div class="workgroups__container"></div>
 </main>
 
 <% include ../partials/footer.ejs %>

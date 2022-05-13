@@ -55,7 +55,14 @@ $component: 'classroom';
                 background-color: rgba($color-purple, 1);
             }
             &-red{
-                background-color: rgba($color-red--dark, 1);
+                background-color: rgba($color-red, 1);
+            }
+            &-link{
+                color: inherit;
+                display: block;
+                &:not(:last-child){
+                    margin-right: 1rem;
+                }
             }
             svg{
                 position: absolute;
@@ -74,10 +81,11 @@ $component: 'classroom';
                 opacity: 0;
                 transition: .3s ease all;
                 text-align: center;
+                pointer-events: none;
             }
             &:hover span{
                 opacity: 1;
-                bottom: -1.33rem;
+                bottom: -1.5rem;
             }
         }
         .status{
@@ -218,6 +226,84 @@ $component: 'classroom';
             span{
                 margin-top: .25rem;
                 text-align: center;
+            }
+        }
+    }
+    &__chat-input-container{
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        bottom: 1rem;
+        left: calc(80px + 1rem);
+        width: 100%;
+        max-width: 454px;
+    }
+    &__chat-input{
+        padding: .5rem .75rem;
+        width: 400px;
+        border-radius: 5px;
+        box-shadow: 0 0 15px 5px rgba($color-black,.05);
+    }
+    &__chat-send{
+        background-color: $color-purple--dark;
+        width: 50px;
+        padding: .5rem .75rem;
+        border-radius: 5px;
+        box-shadow: 0 0 15px 5px rgba($color-black,.05);
+        transition: .3s ease all;
+        background-image: url('/img/svg/send.svg');
+        background-repeat: no-repeat;
+        background-size: .5rem;
+        background-position: center;
+        &:hover{
+            background-color: $color-purple;
+        }
+    }
+    &__chat-box-container{
+        overflow: hidden;
+    }
+    &__chat-box{
+        display: flex;
+        flex-direction: column;
+    }
+    &__chat-message{
+        color: $color-black;
+        text-align: left;
+        width: fit-content;
+        span{
+            display: block;
+        }
+        .author,
+        .date{
+            display: inline-block;
+        }
+        .author{
+            font-family: $font-poppins-semibold;
+        }
+        .date{
+            font-size: .75rem;
+        }
+        .msg{
+            padding: .25rem .75rem;
+            // border: 1px solid rgba($color-black,.25);
+            border-radius: 5px 5px 5px 0;
+            margin: .25rem 0 .75rem 0;
+        }
+        &.message-user{
+            align-self: flex-end;
+            .msg{
+                background: rgba($color-purple--lighter,.5);
+                border-radius: 5px 5px 0 5px;
+            }
+        }
+        &.message-teacher{
+            .msg{
+                background: rgba($color-yellow--light,.5);
+            }
+        }
+        &.message-table{
+            .msg{
+                background: rgba($color-purple--lighter,.5);
             }
         }
     }

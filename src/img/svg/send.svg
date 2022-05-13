@@ -1,0 +1,13 @@
+<svg id="Class" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2.84 4.94">
+    <defs>
+        <style>
+            .cls-1 {
+                fill: #f1f1f7;
+                fill-rule: evenodd;
+            }
+        </style>
+    </defs>
+    <path class="cls-1"
+        d="M-84-59.65l-2,2-.43-.44a.63.63,0,0,1,0-.9l1.13-1.13-1.12-1.12a.65.65,0,0,1,0-.89l.46-.46,2,2a.62.62,0,0,1,.17.33s0,.08,0,.12A.62.62,0,0,1-84-59.65Z"
+        transform="translate(86.68 62.58)" />
+</svg>

@@ -19,14 +19,18 @@
                 </div>
                 <div class="classroom__control-divider"></div>
                 <div class="classroom__control-group">
-                    <div class="button button-sq button-purple">
-                        <% include ../svg/table.ejs %>
-                        <span>Create workgroup with current table</span>
-                    </div>
-                    <div class="button button-sq button-red">
-                        <% include ../svg/exitClass.ejs %>
-                        <span>Leave Class</span>
-                    </div>
+                    <a class="button-link" href="/workgroups">
+                        <div class="button button-sq button-purple">
+                            <% include ../svg/table.ejs %>
+                            <span>Create workgroup with current table</span>
+                        </div>
+                    </a>
+                    <a class="button-link" href="/classes">
+                        <div class="button button-sq button-red">
+                            <% include ../svg/exitClass.ejs %>
+                            <span>Leave Class</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -81,26 +85,46 @@
                     <span>Class</span>
                 </div>
             </div>
-            <div class="classroom__chat-box">
-                <div class="classroom__chat-message message-user">
-                    <span>
-                    User Message
-                    </span>
-                </div>
-                <div class="classroom__chat-message message-teacher">
-                    <span>
-                    (Co-)Teacher Message
-                    </span>
-                </div>
-                <div class="classroom__chat-message message-table">
-                    <span>
-                    Table Message
-                    </span>
+            <div class="classroom__chat-box-container">
+                <div class="classroom__chat-box">
+                    <div class="classroom__chat-message message-user">
+                        <span class="author">
+                            Table A - U. Ser
+                        </span>
+                        <span class="date">
+                            11:23
+                        </span>
+                        <span class="msg">
+                            User Message
+                        </span>
+                    </div>
+                    <div class="classroom__chat-message message-teacher">
+                        <span class="author">
+                            Teacher
+                        </span>
+                        <span class="date">
+                            11:24
+                        </span>
+                        <span class="msg">
+                            User Message
+                        </span>
+                    </div>
+                    <div class="classroom__chat-message message-table">
+                        <span class="author">
+                            Table A - M. Sleebos
+                        </span>
+                        <span class="date">
+                            11:25
+                        </span>
+                        <span class="msg">
+                            User Message
+                        </span>
+                    </div>
                 </div>
             </div>
-            <div class="classroom__chat-input">
-                <input type="text">
-                <input type="button" value="stuur">
+            <div class="classroom__chat-input-container">
+                <input class="classroom__chat-input" type="text">
+                <input class="classroom__chat-send" type="button" value="">
             </div>
         </div>
         <div class="classroom__tables-container">

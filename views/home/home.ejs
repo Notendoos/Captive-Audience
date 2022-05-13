@@ -1,9 +1,14 @@
 <% include ../partials/header.ejs %>
 
 <main class="home">
-    <h1 class="home__heading">
-        Dashboard
-    </h1>
+    <div class="home__heading-container">
+        <div class="home__heading-content-container">
+            <h1 class="home__heading">
+                <%= page_name.charAt(0).toUpperCase() + page_name.slice(1); %>
+            </h1>
+        </div>
+    </div>
+    <div class="home__container"></div>
 </main>
 
 <% include ../partials/footer.ejs %>
