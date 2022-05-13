@@ -31,10 +31,10 @@
     font-display: swap;
 }
 
-$font-poppins-thin: 'poppins-thin';
-$font-poppins-regular: 'poppins-regular';
-$font-poppins-black: 'poppins-black';
-$font-poppins-semibold: 'poppins-semibold';
+$font-poppins-thin: 'poppins-thin', sans-serif;
+$font-poppins-regular: 'poppins-regular', sans-serif;
+$font-poppins-black: 'poppins-black', sans-serif;
+$font-poppins-semibold: 'poppins-semibold', sans-serif;
 
 $font-stack-primary: $font-poppins-regular,
 sans-serif;
