@@ -42,6 +42,7 @@
                         call.answer(stream)
                         const video = document.createElement('video')
                         call.on('stream', (userVideoStream) => {
+                            console.log('someone-joined')
                             app.addVideoStream(video, userVideoStream)
                         })
                     })
