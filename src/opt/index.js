@@ -4,7 +4,7 @@
     const peer = new Peer(undefined, {
         path: '/peerjs',
         host: window.location.hostname,
-        port: window.location.hostname == 'tafelen.herokuapp.com' ? '433' : port 
+        port: window.location.hostname == 'tafelen.herokuapp.com' ? '' : port 
     })
 
     const videoContainer = document.querySelector('.video-personal')
