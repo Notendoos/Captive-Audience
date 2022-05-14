@@ -45,7 +45,8 @@ html, body {
   background-color: #e8e9f3; }
 
 main {
-  margin-left: 120px; }
+  margin-left: 120px;
+  overflow-x: hidden; }
 
 .main-nav {
   position: fixed;

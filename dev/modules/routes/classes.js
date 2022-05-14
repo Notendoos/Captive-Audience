@@ -95,15 +95,15 @@ route.get("/classes/:id/:name",(req,res)=>{
     })
     if(roomData){
         res.status(200).render("classes/classroom.ejs",{page_name:'classes',room:roomData,meeting:true,roomID:roomData.id})
-        console.log('hi')
-        let io = res.locals.io
-        io.on('connection',(ws)=>{
-            ws.on('join-room',(roomID, userID)=>{
-                console.log('someone joined')
-                ws.join(roomID)
-                ws.to(roomID).broadcast.emit(`User ${roomID} connected`,userID)
-            })
-        })
+        // console.log('hi')
+        // let io = res.locals.io
+        // io.on('connection',(ws)=>{
+        //     ws.on('join-room',(roomID, userID)=>{
+        //         console.log('someone joined')
+        //         ws.join(roomID)
+        //         ws.to(roomID).broadcast.emit(`User ${roomID} connected`,userID)
+        //     })
+        // })
     }else{
         res.redirect('/classes')
     }

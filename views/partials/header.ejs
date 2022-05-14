@@ -11,8 +11,8 @@
     <script src="/js/dist/socketio.js"></script>
     <script> 
         const port = "<%= port %>";
-        const roomID = "<%= roomID %>"
-        const roomName = "<%= room.name.replace(/ /g,'_') %>"
+        const roomID = "<%= typeof roomID !== 'undefined' && roomID %>"
+        const roomName = "<%= typeof room !== 'undefined' && room.name.replace(/ /g,'_') %>"
     </script>
 </head>
 <body>
