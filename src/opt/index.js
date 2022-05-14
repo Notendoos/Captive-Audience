@@ -41,6 +41,7 @@
                     peer.on('call', (call) => {
                         call.answer(stream)
                         const video = document.createElement('video')
+                        video.classList.add('new-user')
                         call.on('stream', (userVideoStream) => {
                             console.log('someone-joined')
                             app.addVideoStream(video, userVideoStream)
@@ -53,33 +54,34 @@
         },
         addVideoStream: (video, stream, personal = true) => {
             video.srcObject = stream;
-            if(personal){
-                video.addEventListener('loadedmetadata', () => {
-                    video.play();
-                    videoContainer.append(video);
-                });
-            }else{
-                let emptyVideoContainer = []
-                videoContainers.forEach((el,i)=>{
-                    let check = true
-                    el.childNodes.forEach((ele)=>{
-                        if(ele.nodeName == 'VIDEO'){
-                            check = false
-                            console.log(ele)
-                        }
-                    })
-                    if(check){
-                        emptyVideoContainer.push(el)
-                        check = true
-                    }
-                })
-                if(emptyVideoContainer[0]){
-                    video.addEventListener('loadedmetadata', () => {
-                        video.play();
-                        emptyVideoContainer[0].append(video);
-                    });
-                }
-            }
+            video.addEventListener('loadedmetadata', () => {
+                video.play();
+                videoContainer.append(video);
+            });
+            // if(personal){
+            // }else{
+            //     let emptyVideoContainer = []
+            //     videoContainers.forEach((el,i)=>{
+            //         let check = true
+            //         el.childNodes.forEach((ele)=>{
+            //             if(ele.nodeName == 'VIDEO'){
+            //                 check = false
+            //                 console.log(ele)
+            //             }
+            //         })
+            //         if(check){
+            //             emptyVideoContainer.push(el)
+            //             check = true
+            //         }
+            //     })
+            //     if(emptyVideoContainer[0]){
+            //         video.addEventListener('loadedmetadata', () => {
+            //             video.play();
+            //             video.classlist.add('new-video')
+            //             emptyVideoContainer[0].append(video);
+            //         });
+            //     }
+            // }
         },
         connectToNewUser: (userID, stream) => {
             const call = peer.call(userID, stream);
