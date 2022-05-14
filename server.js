@@ -37,10 +37,12 @@ io.on('connection',(socket)=>{
     let thisUser
     console.log(socket.id)
     socket.emit('hello',socket.id)
+
     socket.on('click',(data)=>{
         console.log(data)
     })
     socket.on('join-room',(roomID, userID)=>{
+        console.log(`${userID} joined ${roomID}`)
         thisUser = userID
         socket.join(roomID)
         socket.to(roomID).broadcast.emit('user-connected',userID)

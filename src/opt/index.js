@@ -8,6 +8,7 @@
     })
 
     const videoContainer = document.querySelector('.video-personal')
+    const videoContainers = document.querySelectorAll('.video-student')
     const myVideo = document.createElement('video')
 
     myVideo.muted = true
@@ -49,18 +50,41 @@
                     })
                 });
         },
-        addVideoStream: (video, stream) => {
+        addVideoStream: (video, stream, personal = true) => {
             video.srcObject = stream;
-            video.addEventListener('loadedmetadata', () => {
-                video.play();
-                videoContainer.append(video);
-            });
+            if(personal){
+                video.addEventListener('loadedmetadata', () => {
+                    video.play();
+                    videoContainer.append(video);
+                });
+            }else{
+                let emptyVideoContainer = []
+                videoContainers.forEach((el,i)=>{
+                    let check = true
+                    el.childNodes.forEach((ele)=>{
+                        if(ele.nodeName == 'VIDEO'){
+                            check = false
+                            console.log(ele)
+                        }
+                    })
+                    if(check){
+                        emptyVideoContainer.push(el)
+                        check = true
+                    }
+                })
+                if(emptyVideoContainer[0]){
+                    video.addEventListener('loadedmetadata', () => {
+                        video.play();
+                        emptyVideoContainer[0].append(video);
+                    });
+                }
+            }
         },
         connectToNewUser: (userID, stream) => {
             const call = peer.call(userID, stream);
             const video = document.createElement('video');
             call.on('stream', (userVideoStream) => {
-                app.addVideoStream(video, userVideoStream);
+                app.addVideoStream(video, userVideoStream, false);
             });
         }
     };
