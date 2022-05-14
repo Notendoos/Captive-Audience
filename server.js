@@ -14,6 +14,7 @@ app.use(express.static('src'))
 app.set('view engine','ejs')
 
 let onlineUsers = []
+let users = []
 
 app.use(function(req,res,next){
     // res.locals.peerServer = peerServer
@@ -34,18 +35,23 @@ app.use('/',workgroups)
 app.use('/',notFound)
 
 io.on('connection',(socket)=>{
-    let thisUser
-    console.log(socket.id)
-    socket.emit('hello',socket.id)
+    let thisUser = socket.id
 
-    socket.on('click',(data)=>{
-        console.log(data)
-    })
+    onlineUsers.push(thisUser)
+
     socket.on('join-room',(roomID, userID)=>{
         console.log(`${userID} joined ${roomID}`)
         thisUser = userID
         socket.join(roomID)
         socket.to(roomID).broadcast.emit('user-connected',userID)
+    })
+
+    socket.on("disconnect",(data)=>{
+        console.log(`${thisUser} disconnected`)
+        if(onlineUsers.indexOf(thisUser) > -1){
+            onlineUsers.splice(onlineUsers.indexOf(thisUser),1)
+        }
+        io.emit("online users",onlineUsers)
     })
 })
 
