@@ -37,19 +37,24 @@ app.use('/',notFound)
 io.on('connection',(socket)=>{
     let thisUser = socket.id
 
-    onlineUsers.push(thisUser)
+    onlineUsers.push({
+        socketID:thisUser
+    })
 
     socket.on('join-class',(roomID, userID)=>{
         console.log(`${userID} joined ${roomID}`)
-        thisUser = userID
         socket.join(roomID)
         socket.to(roomID).broadcast.emit('user-connected',userID)
+
+        let user = onlineUsers.find((user)=>  user.socketID == thisUser)
+        user.peerID = userID
     })
 
     socket.on("disconnect",(data)=>{
         console.log(`${thisUser} disconnected`)
-        if(onlineUsers.indexOf(thisUser) > -1){
-            onlineUsers.splice(onlineUsers.indexOf(thisUser),1)
+        if(onlineUsers.find((user)=>{return user.socketID == thisUser})){
+            io.emit('clean-up',onlineUsers.find((user)=>{return user.socketID == thisUser})) 
+            onlineUsers.splice(onlineUsers.indexOf(onlineUsers.findIndex((user)=>{return user.socketID == thisUser})),1)
         }
         io.emit("online users",onlineUsers)
     })
@@ -62,7 +67,7 @@ io.on('connection',(socket)=>{
             console.log(`User seated at ${data.new.table},${data.new.chair}`)
             socket.broadcast.emit('user-seated',data)
         }
-        console.log(io.sockets.adapter.rooms)
+        // console.log(io.sockets.adapter.rooms) 
     })
 })
 

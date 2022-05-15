@@ -13,6 +13,7 @@
     const popupEl = document.querySelector('.popup')
     const chairs = document.querySelectorAll('.classroom__chair')
 
+    let peerID
     let myVideoStream
 
     myVideo.muted = true
@@ -144,10 +145,11 @@
                 })
                 .then((stream) => {
                     myVideoStream = stream;
-                    app.addVideoStream(myVideo, stream);
+                    app.addVideoStream(myVideo, stream, true, peerID);
                     peer.on('call', (call) => {
                         call.answer(stream)
                         const video = document.createElement('video')
+                        video.setAttribute('data-peer',call.peer)
                         call.on('stream', (userVideoStream) => {
                             console.log('someone-joined')
                             app.addVideoStream(video, userVideoStream, false)
@@ -192,6 +194,7 @@
         connectToNewUser: (userID, stream) => {
             const call = peer.call(userID, stream);
             const video = document.createElement('video');
+            video.setAttribute('data-peer',userID)
             call.on('stream', (userVideoStream) => {
                 console.log('new-user')
                 app.addVideoStream(video, userVideoStream, false);
@@ -202,6 +205,7 @@
 
     peer.on('open', (id) => {
         socket.emit('join-class', roomID, id);
+        myVideo.setAttribute('data-peer',id)
     });
 
     socket.on('user-seated',(data)=>{
@@ -212,6 +216,12 @@
             tables.seat(data.new.chair)
             tables.clearChair(data.old.chair)
         }
+    })
+
+    socket.on('clean-up',(data)=>{
+        try{
+            document.querySelector(`[data-peer="${data.peerID}"]`).remove()
+        }catch(err){}
     })
 
 })()
