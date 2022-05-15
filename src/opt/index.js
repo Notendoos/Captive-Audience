@@ -67,10 +67,6 @@
                     tables.checkSeat(el)
                 })
             })
-            if(!checkOnce){
-                app.initMedia()
-                checkOnce = true
-            }
         },
         checkSeat: (chair)=>{
             const personalSeat = document.querySelector('.classroom__chair.personal')
@@ -118,6 +114,7 @@
     const app = {
         init: () => {
             if (app.check()) {
+                app.initMedia()
                 tables.init()
             }
             popup.init()
@@ -201,7 +198,7 @@
     app.init();
 
     peer.on('open', (id) => {
-        socket.emit('join-room', roomID, id);
+        socket.emit('join-class', roomID, id);
     });
 
     socket.on('user-seated',(data)=>{
