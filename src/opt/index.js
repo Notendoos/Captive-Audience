@@ -66,6 +66,10 @@
                 el.addEventListener('click',()=>{
                     tables.checkSeat(el)
                 })
+                if(!checkOnce){
+                    app.initMedia()
+                    checkOnce = true
+                }
             })
         },
         checkSeat: (chair)=>{
@@ -114,7 +118,6 @@
     const app = {
         init: () => {
             if (app.check()) {
-                app.initMedia()
                 tables.init()
             }
             popup.init()
