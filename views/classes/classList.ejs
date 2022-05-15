@@ -1,6 +1,6 @@
 <section class="classlist">
     <div class="classlist__container">
-        <h1 class="classlist__title">Today</h1>
+        <h1 class="classlist__title">Vandaag</h1>
         <ul class="classlist__list">
             <% rooms.forEach((room,i)=>{%>
                 <li class="classlist__list-item">
@@ -24,11 +24,11 @@
                         </span>
                         <% if(typeof room.present !== "undefined"){ %>
                         <div class="classlist__list-container">
-                            <span class="classlist__present-label">Already in</span>
+                            <span class="classlist__present-label">Al aanwezig</span>
                             <div class="classlist__present-container">
                                 <% if(room.present.teacher.present){ %>
                                 <div class="">
-                                    <span>Teacher</span>
+                                    <span>Docent</span>
                                     <div class="user-bubble teacher">
                                         <img class="user-bubble__image" src="<%= room.present.teacher.image %>" alt="profile picture">
                                     </div>
@@ -36,7 +36,7 @@
                                 <% } %>
                                 <% if(room.present.students.present){ %>
                                 <div class="">
-                                    <span>Student(s)</span>
+                                    <span>Student(en)</span>
                                     <% if(room.present.students.amount >= 5){ %>
                                         <div class="user-bubble__group student">
                                             <div class="user-bubble text">
@@ -71,7 +71,7 @@
         </ul>
     </div>
     <div class="classlist__container">
-        <h1 class="classlist__title">Tomorrow</h1>
+        <h1 class="classlist__title">Morgen</h1>
         <ul class="classlist__list">
             <% roomsNext.forEach((room,i)=>{%>
                 <li class="classlist__list-item">
@@ -95,16 +95,16 @@
                         </span>
                         <% if(typeof room.present !== "undefined"){ %>
                         <div class="classlist__list-container">
-                            <span class="classlist__present-label">Already in</span>
+                            <span class="classlist__present-label">Al aanwezig</span>
                             <div class="classlist__present-container">
                                 <div class="">
-                                    <span>Teacher</span>
+                                    <span>Docent</span>
                                     <div>
                                         
                                     </div>
                                 </div>
                                 <div>
-                                    <span>Student(s)</span>
+                                    <span>Student(en)</span>
                                     <div></div>
                                 </div>
                             </div>
