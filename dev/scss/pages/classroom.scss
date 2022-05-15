@@ -45,6 +45,7 @@ $component: 'classroom';
             height: 3rem;
             width: 3rem;
             border-radius: 50%;
+            cursor: pointer;
             &:not(:last-child){
                 margin-right: 1rem;
             }
@@ -74,13 +75,12 @@ $component: 'classroom';
             }
             span{
                 position: absolute;
-                right: 50%;
+                right: 0;
                 width: 300px;
-                transform: translateX(50%);
                 bottom: -1rem;
                 opacity: 0;
                 transition: .3s ease all;
-                text-align: center;
+                text-align: right;
                 pointer-events: none;
             }
             &:hover span{
@@ -261,6 +261,10 @@ $component: 'classroom';
     }
     &__chat-box-container{
         overflow: hidden;
+        overflow-y: scroll;
+        height: 310px;
+        margin-right: -1rem;
+        padding-right: 1rem;
     }
     &__chat-box{
         display: flex;
@@ -306,5 +310,109 @@ $component: 'classroom';
                 background: rgba($color-purple--lighter,.5);
             }
         }
+    }
+    &__tables{
+        overflow: hidden;
+        overflow-y: scroll;
+        max-height: 380px;
+        margin-right: -1rem;
+        padding-right: 1rem;
+    }
+    &__tables-container{
+        padding: 0 1rem 0 calc(80px + 1rem);
+        color: $color-white;
+        background-color: $color-gray--light;
+    }
+    &__tables-list{
+        padding: 1rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    &__tables-list-item{
+        background-color: rgba($color-purple--light,.25);
+        margin-bottom: 1rem;
+        flex-basis: calc(50% - .5rem);
+        display: flex;
+        justify-content: center;
+        min-height: 300px;
+    }
+    &__table-container{
+        position: relative;
+        display: flex;
+        padding: 1rem;
+    }
+    &__table{
+        color: black;
+        text-align: center;
+        height: 7.5rem;
+        width: 7.5rem;
+        border-radius: 50%;
+        background-color: rgba($color-gray--light,1);
+        margin: auto;
+        z-index: 2;
+        box-shadow: 0 0 15px 5px rgba($color-black,.1);
+    }
+    &__chair{
+        display: block;
+        position: absolute;
+        height: 3rem;
+        width: 3rem;
+        overflow: hidden;
+        background-color: $color-white;
+        border-radius: 5px;
+        transition: .3s ease all;
+        z-index: 1;
+
+        border-top: 5px solid $color-black;
+
+        &.seated{
+            background-color: $color-purple--light;
+        }
+        &.personal{
+            background-color: $color-green--dark;
+        }
+
+        &:nth-of-type(1){
+            top: calc(50% - 6rem);
+            left: calc(50%);
+            transform: translate(-50%,-50%);
+            &.seated{
+                top: calc(50% - 5rem);
+            }
+        }
+        &:nth-of-type(2){
+            top: calc(50%);
+            left: calc(50% + 6rem);
+            transform: translate(-50%,-50%) rotate(90deg);
+            &.seated{
+                left: calc(50% + 5rem);
+            }
+        }
+        &:nth-of-type(3){
+            top: calc(50% + 6rem);
+            left: calc(50%);
+            transform: translate(-50%,-50%) rotate(180deg);
+            &.seated{
+                top: calc(50% + 5rem);
+            }
+        }
+        &:nth-of-type(4){
+            top: calc(50%);
+            left: calc(50% - 6rem);
+            transform: translate(-50%,-50%) rotate(270deg);
+            &.seated{
+                left: calc(50% - 5rem);
+            }
+        }
+        &-input{
+            display: none;
+        }
+    }
+    &__table-label{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
     }
 }

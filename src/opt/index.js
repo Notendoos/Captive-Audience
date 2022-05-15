@@ -11,11 +11,14 @@
     const videoContainers = document.querySelectorAll('.video-student:not(.video-personal)')
     const myVideo = document.createElement('video')
     const popupEl = document.querySelector('.popup')
+    const chairs = document.querySelectorAll('.classroom__chair')
 
     let myVideoStream
 
     myVideo.muted = true
     myVideo.classList.add('user')
+
+    let checkOnce = false
 
     const popup = {
         init:()=>{
@@ -57,10 +60,65 @@
             }
         },
     }
+    const tables = {
+        init: ()=>{
+            chairs.forEach((el)=>{
+                el.addEventListener('click',()=>{
+                    tables.checkSeat(el)
+                })
+            })
+            if(!checkOnce){
+                app.initMedia()
+                checkOnce = true
+            }
+        },
+        checkSeat: (chair)=>{
+            const personalSeat = document.querySelector('.classroom__chair.personal')
+            if(!personalSeat && !chair.classList.contains('seated')){
+                chair.classList.toggle('seated')
+                chair.classList.toggle('personal')
+
+                socket.emit('user-seated',{
+                    reseated: false,
+                    new:{
+                        table: chair.parentElement.getAttribute('data-table'),
+                        chair: chair.getAttribute('data-chair')
+                    }
+                })
+            }else if(!personalSeat || !chair.classList.contains('seated')){
+                personalSeat.classList.remove('seated')
+                personalSeat.classList.remove('personal')
+
+                chair.classList.toggle('seated')
+                chair.classList.toggle('personal')
+
+
+                socket.emit('user-seated',{
+                    reseated: true,
+                    new:{
+                        table: chair.parentElement.getAttribute('data-table'),
+                        chair: chair.getAttribute('data-chair')
+                    },
+                    old:{
+                        table: personalSeat.parentElement.getAttribute('data-table'),
+                        chair: personalSeat.getAttribute('data-chair')
+                    }
+                })
+            }
+        },
+        seat: (chair)=>{
+            chair = document.querySelector(`[data-chair=${chair}]`)
+            chair.classList.add('seated')
+        },
+        clearChair: (chair)=>{
+            chair = document.querySelector(`[data-chair=${chair}]`)
+            chair.classList.remove('seated')
+        }
+    }
     const app = {
         init: () => {
             if (app.check()) {
-                app.initMedia()
+                tables.init()
             }
             popup.init()
         },
@@ -145,5 +203,15 @@
     peer.on('open', (id) => {
         socket.emit('join-room', roomID, id);
     });
+
+    socket.on('user-seated',(data)=>{
+        console.log(data)
+        if(data.reseated == false){
+            tables.seat(data.new.chair)
+        }else{
+            tables.seat(data.new.chair)
+            tables.clearChair(data.old.chair)
+        }
+    })
 
 })()

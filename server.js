@@ -39,7 +39,7 @@ io.on('connection',(socket)=>{
 
     onlineUsers.push(thisUser)
 
-    socket.on('join-room',(roomID, userID)=>{
+    socket.on('join-class',(roomID, userID)=>{
         console.log(`${userID} joined ${roomID}`)
         thisUser = userID
         socket.join(roomID)
@@ -52,6 +52,17 @@ io.on('connection',(socket)=>{
             onlineUsers.splice(onlineUsers.indexOf(thisUser),1)
         }
         io.emit("online users",onlineUsers)
+    })
+
+    socket.on('user-seated',(data)=>{
+        if(data.reseated){
+            console.log(`User reseated at ${data.new.table},${data.new.chair} from ${data.old.table},${data.old.chair}`)
+            socket.broadcast.emit('user-seated',data)
+        }else{
+            console.log(`User seated at ${data.new.table},${data.new.chair}`)
+            socket.broadcast.emit('user-seated',data)
+        }
+        console.log(io.sockets.adapter.rooms)
     })
 })
 
