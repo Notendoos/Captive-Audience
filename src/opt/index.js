@@ -27,6 +27,10 @@
             popupEl.querySelector('.popup__next span:last-child').addEventListener('click',popup.closePopup)
             popupEl.querySelector('.popup__prev').addEventListener('click',popup.prev)
             popupEl.querySelector('.popup__next').addEventListener('click',popup.next)
+            document.querySelector('.item--help').addEventListener('click',popup.activate)
+        },
+        activate: ()=>{
+            popupEl.classList.add('active')
         },
         closePopup: ()=>{
             popupEl.classList.remove('active')
@@ -128,7 +132,7 @@
         check: () => {
             if(!localStorage.getItem('tafelen-thisUser')){
                 localStorage.setItem('tafelen-thisUser',prompt('Wat is je naam') )  
-                popupEl.classList.add('active')
+                popup.activate()
             }else{
                 console.log(localStorage.getItem('tafelen-thisUser'))
             }

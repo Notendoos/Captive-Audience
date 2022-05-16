@@ -126,13 +126,15 @@ $component: 'classroom';
             height: 100%;
             object-fit: cover;
             z-index: 1;
-            transform: rotateY(180deg);
         }
         &.video{
             &-personal,
             &-student{
                 height: 245px;
                 width: calc(50% - 5px);
+                video{
+                    transform: rotateY(180deg);
+                }
             }
             &-student{
                 background-color: $color-purple--light;
