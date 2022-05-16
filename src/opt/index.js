@@ -81,6 +81,7 @@
 
                 socket.emit('user-seated',{
                     reseated: false,
+                    roomID,
                     new:{
                         table: chair.parentElement.getAttribute('data-table'),
                         chair: chair.getAttribute('data-chair')
@@ -96,6 +97,7 @@
 
                 socket.emit('user-seated',{
                     reseated: true,
+                    roomID,
                     new:{
                         table: chair.parentElement.getAttribute('data-table'),
                         chair: chair.getAttribute('data-chair')
@@ -219,9 +221,11 @@
     })
 
     socket.on('clean-up',(data)=>{
+        console.log('clean-up',data)
         try{
-            document.querySelector(`[data-peer="${data.peerID}"]`).remove()
-        }catch(err){}
+            document.querySelector(`[data-peer="${data.user.peerID}"]`).remove()
+            tables.clearChair(data.chair.new.chair)
+        }catch(err){console.log(err)}
     })
 
 })()
