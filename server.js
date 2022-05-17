@@ -54,12 +54,15 @@ io.on('connection',(socket)=>{
     socket.on("disconnect",(data)=>{
         console.log(`${thisUser} disconnected`)
         if(onlineUsers.find((user)=>{return user.socketID == thisUser})){
-            io.emit('clean-up',{
-                user:onlineUsers.find((user)=>{return user.socketID == thisUser}),
-                chair
-            }) 
-
-            onlineUsers.splice(onlineUsers.indexOf(onlineUsers.findIndex((user)=>{return user.socketID == thisUser})),1)
+            try{
+                io.emit('clean-up',{
+                    user:onlineUsers.find((user)=>{return user.socketID == thisUser}),
+                    chair
+                }) 
+                onlineUsers.splice(onlineUsers.indexOf(onlineUsers.findIndex((user)=>{return user.socketID == thisUser})),1)
+            }catch(err){
+                console.log(err)
+            }
         }
         io.emit("online users",onlineUsers)
     })
