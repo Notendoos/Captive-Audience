@@ -270,8 +270,11 @@ $component: 'classroom';
         padding-right: 1rem;
     }
     &__chat-box{
-        display: flex;
-        flex-direction: column;
+        display: none;
+        &.active{
+            display: flex;
+            flex-direction: column;
+        }
     }
     &__chat-message{
         color: $color-black;
@@ -286,6 +289,7 @@ $component: 'classroom';
         }
         .author{
             font-family: $font-poppins-semibold;
+            margin-right: .25rem;
         }
         .date{
             font-size: .75rem;

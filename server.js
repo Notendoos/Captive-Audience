@@ -78,6 +78,12 @@ io.on('connection',(socket)=>{
         }
         // console.log(io.sockets.adapter.rooms) 
     })
+
+    socket.on('send-message',(data)=>{
+        const date = new Date()
+        data.date = `${date.getHours() <= 9 ?  '0' + date.getHours():date.getHours()}:${date.getMinutes() <= 9 ?  '0' + date.getMinutes():date.getMinutes()}`
+        io.sockets.emit('render-message',data)
+    })
 })
 
 

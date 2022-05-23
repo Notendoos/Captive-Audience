@@ -76,17 +76,17 @@
         </div>
         <div class="classroom__chat-container">
             <div class="classroom__chat-channel">
-                <div class="channel-select">
+                <div class="channel-select table">
                     <% include ../svg/table.ejs %>
                     <span>Tafel</span>
                 </div>
-                <div class="channel-select active">
+                <div class="channel-select classroom active">
                     <% include ../svg/door.ejs %>
                     <span>Klas</span>
                 </div>
             </div>
             <div class="classroom__chat-box-container">
-                <div class="classroom__chat-box">
+                <div class="classroom__chat-box chat--classroom active" data-chat="classroom">
                     <div class="classroom__chat-message message-user">
                         <span class="author">
                             Tafel A - U. Ser
@@ -120,6 +120,9 @@
                             User Message
                         </span>
                     </div>
+                </div>
+                <div class="classroom__chat-box chat--table" data-chat="table">
+                   
                 </div>
             </div>
             <div class="classroom__chat-input-container">

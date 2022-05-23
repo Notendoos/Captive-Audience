@@ -12,6 +12,13 @@
     const myVideo = document.createElement('video')
     const popupEl = document.querySelector('.popup')
     const chairs = document.querySelectorAll('.classroom__chair')
+    const chatContainer = document.querySelector('.classroom__chat-box-container')
+    const chatContainerClassroom = chatContainer.querySelector('.chat--classroom')
+    const chatContainerTable = chatContainer.querySelector('.chat--table')
+    const chatInput = document.querySelector('.classroom__chat-input')
+    const chatSend = document.querySelector('.classroom__chat-send')
+    const channelSelects = document.querySelectorAll('.channel-select')
+    const chatboxes = document.querySelectorAll('.classroom__chat-box')
 
     let peerID
     let myVideoStream
@@ -21,6 +28,81 @@
 
     let checkOnce = false
 
+    const chat = {
+        init: ()=>{
+            chatSend.addEventListener('click',()=>{
+                chat.send()
+            })
+            chatInput.addEventListener('keydown',(e)=>{
+                if(e.key === "Enter"){
+                    chat.send()
+                }
+            })
+            channelSelects.forEach(el=>{
+                el.addEventListener('click',()=>{
+                    const activeChannel = document.querySelector('.channel-select.active')
+                    activeChannel.classList.remove('active')
+                    el.classList.add('active')
+                    if(el.classList.contains('table')){
+                        chatContainerClassroom.classList.remove('active')
+                        chatContainerTable.classList.add('active')
+                    }else if(el.classList.contains('classroom')){
+                        chatContainerTable.classList.remove('active')
+                        chatContainerClassroom.classList.add('active')
+                    }
+                })
+            })
+        },
+        render: (data)=>{
+            console.log(data)
+            const messageContainer = document.createElement('div')
+            const author = document.createElement('span')
+            const date = document.createElement('span')
+            const msg = document.createElement('span')
+            const username = data.username.toLowerCase()
+
+            messageContainer.classList.add('classroom__chat-message')
+            author.classList.add('author')
+            date.classList.add('date')
+            msg.classList.add('msg')
+
+            author.textContent = username.charAt(0).toUpperCase() + username.slice(1);
+            date.textContent = data.date
+            msg.textContent = data.msg
+
+
+            messageContainer.append(author,date,msg)
+
+            if(data.username === localStorage.getItem('tafelen-thisUser')){
+                messageContainer.classList.add('message-user')
+            }else{
+                messageContainer.classList.add('message-table')
+            }
+            
+            switch(data.channel){
+                case 'table':
+                    chatContainerTable.appendChild(messageContainer)
+                    chatContainer.scrollTop = chatContainer.scrollHeight
+                    break;
+                case 'classroom':
+                    chatContainerClassroom.appendChild(messageContainer)
+                    chatContainer.scrollTop = chatContainer.scrollHeight
+                    break;
+                default:
+                    console.log(data)
+                    break;
+            }
+            
+        },
+        send: ()=>{
+            socket.emit('send-message',{
+                channel: document.querySelector('.classroom__chat-box.active').getAttribute('data-chat'),
+                msg: chatInput.value,
+                username: localStorage.getItem('tafelen-thisUser')
+            })
+            chatInput.value = ''
+        }
+    }
     const popup = {
         init:()=>{
             popupEl.querySelector('.popup__close').addEventListener('click',popup.closePopup)
@@ -126,6 +208,7 @@
         init: () => {
             if (app.check()) {
                 tables.init()
+                chat.init()
             }
             popup.init()
         },
@@ -230,6 +313,10 @@
             document.querySelector(`[data-peer="${data.user.peerID}"]`).remove()
             tables.clearChair(data.chair.new.chair)
         }catch(err){console.log(err)}
+    })
+
+    socket.on('render-message',(data)=>{
+        chat.render(data)
     })
 
 })()

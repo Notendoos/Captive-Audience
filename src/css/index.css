@@ -601,8 +601,10 @@ main {
   padding-right: 1rem; }
 
 .classroom__chat-box {
-  display: flex;
-  flex-direction: column; }
+  display: none; }
+  .classroom__chat-box.active {
+    display: flex;
+    flex-direction: column; }
 
 .classroom__chat-message {
   color: #272635;
@@ -614,7 +616,8 @@ main {
   .classroom__chat-message .date {
     display: inline-block; }
   .classroom__chat-message .author {
-    font-family: "poppins-semibold", sans-serif; }
+    font-family: "poppins-semibold", sans-serif;
+    margin-right: .25rem; }
   .classroom__chat-message .date {
     font-size: .75rem; }
   .classroom__chat-message .msg {
