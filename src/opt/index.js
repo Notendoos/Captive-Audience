@@ -34,7 +34,7 @@
                 chat.send()
             })
             chatInput.addEventListener('keydown',(e)=>{
-                if(e.key === "Enter"){
+                if(e.key === "Enter" && chatInput.value !== ""){
                     chat.send()
                 }
             })
