@@ -101,13 +101,17 @@ $component: 'classroom';
     &__tables-container{
         margin-top: .625rem;
     }
-    &__teacher-container,
-    &__chat-container{
+    &__teacher-container{
         flex-basis: calc(45% - .625rem);
     }
-    &__student-container,
-    &__tables-container{
+    &__chat-container{
+        flex-basis: calc(40% - .625rem);
+    }
+    &__student-container{
         flex-basis: calc(55% - .625rem);
+    }
+    &__tables-container{
+        flex-basis: calc(60% - .625rem);
     }
     &__student-container{
         display: flex;
@@ -238,12 +242,12 @@ $component: 'classroom';
         justify-content: space-between;
         bottom: 1rem;
         left: calc(80px + 1rem);
-        width: 100%;
+        width: calc(100% - 80px - 2rem);
         max-width: 454px;
     }
     &__chat-input{
         padding: .5rem .75rem;
-        width: 400px;
+        width: 85%;
         border-radius: 5px;
         box-shadow: 0 0 15px 5px rgba($color-black,.05);
     }
@@ -326,7 +330,7 @@ $component: 'classroom';
         padding-right: 1rem;
     }
     &__tables-container{
-        padding: 0 1rem 0 calc(80px + 1rem);
+        padding: 0 1rem;
         color: $color-white;
         background-color: $color-gray--light;
     }
@@ -365,7 +369,6 @@ $component: 'classroom';
         position: absolute;
         height: 3rem;
         width: 3rem;
-        overflow: hidden;
         background-color: $color-white;
         border-radius: 5px;
         transition: .3s ease all;
@@ -378,7 +381,7 @@ $component: 'classroom';
         }
         &.personal{
             background-color: $color-green--dark;
-        }
+        }    
 
         &:nth-of-type(1){
             top: calc(50% - 6rem);
@@ -411,6 +414,65 @@ $component: 'classroom';
             &.seated{
                 left: calc(50% - 5rem);
             }
+        }
+        img{
+            position: absolute;
+            object-fit: cover;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            height: 130%;
+            width: 130%;
+            border: none;
+        }
+        &:nth-of-type(2) img{
+            transform: translate(-50%,-50%) rotate(-90deg);
+        }
+        &:nth-of-type(3) img{
+            transform: translate(-50%,-50%) rotate(-180deg);
+        }
+        &:nth-of-type(4) img{
+            transform: translate(-50%,-50%) rotate(-270deg);
+        }
+        span{
+            position: absolute;
+            display: block;
+            top: 50%;
+            left: 50%;
+            opacity: 0;
+            z-index: 99;
+            color: $color-black;
+            transition: .5s ease opacity;
+            transition-delay: .1s;
+        }
+        &.seated span{
+            opacity: 1;
+        }
+        &:nth-of-type(1) span{
+            top: -1.5rem;
+            transform: translate(-50%,-50%);
+            text-align: center;
+        }       
+        &:nth-of-type(2) span{
+            top: -2.5rem;
+            transform: translate(-50%,-50%) rotate(-90deg);
+        }
+        &:nth-of-type(3) span{
+            top: -1.5rem;
+            transform: translate(-50%,-50%) rotate(-180deg);
+            text-align: center;
+        }
+        &:nth-of-type(4) span{
+            top: -2.5rem;
+            text-align: right;
+            transform: translate(-50%,-50%) rotate(-270deg);
+        }
+        &-container{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 0 0 5px 5px;
         }
         &-input{
             display: none;

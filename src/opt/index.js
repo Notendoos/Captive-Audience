@@ -13,8 +13,8 @@
     const popupEl = document.querySelector('.popup')
     const chairs = document.querySelectorAll('.classroom__chair')
     const chatContainer = document.querySelector('.classroom__chat-box-container')
-    const chatContainerClassroom = chatContainer.querySelector('.chat--classroom')
-    const chatContainerTable = chatContainer.querySelector('.chat--table')
+    const chatContainerClassroom = document.querySelector('.chat--classroom')
+    const chatContainerTable = document.querySelector('.chat--table')
     const chatInput = document.querySelector('.classroom__chat-input')
     const chatSend = document.querySelector('.classroom__chat-send')
     const channelSelects = document.querySelectorAll('.channel-select')
@@ -149,25 +149,28 @@
     }
     const tables = {
         init: ()=>{
-            chairs.forEach((el)=>{
-                el.addEventListener('click',()=>{
-                    tables.checkSeat(el)
+            if(chairs){
+                chairs.forEach((el)=>{
+                    el.addEventListener('click',()=>{
+                        tables.checkSeat(el)
+                    })
                 })
-                if(!checkOnce){
-                    app.initMedia()
-                    checkOnce = true
-                }
-            })
+            }else{
+                console.log('no chairs')
+            }
         },
         checkSeat: (chair)=>{
             const personalSeat = document.querySelector('.classroom__chair.personal')
             if(!personalSeat && !chair.classList.contains('seated')){
-                chair.classList.toggle('seated')
-                chair.classList.toggle('personal')
+                chair.classList.add('seated')
+                chair.classList.add('personal')
+
+                chair.querySelector('.classroom__chair--label').textContent = localStorage.getItem('tafelen-thisUser')
 
                 socket.emit('user-seated',{
                     reseated: false,
                     roomID,
+                    name: localStorage.getItem('tafelen-thisUser'),
                     new:{
                         table: chair.parentElement.getAttribute('data-table'),
                         chair: chair.getAttribute('data-chair')
@@ -177,13 +180,16 @@
                 personalSeat.classList.remove('seated')
                 personalSeat.classList.remove('personal')
 
-                chair.classList.toggle('seated')
-                chair.classList.toggle('personal')
+                chair.classList.add('seated')
+                chair.classList.add('personal')
 
+                personalSeat.querySelector('.classroom__chair--label').textContent = ''
+                chair.querySelector('.classroom__chair--label').textContent = localStorage.getItem('tafelen-thisUser')
 
                 socket.emit('user-seated',{
                     reseated: true,
                     roomID,
+                    name: localStorage.getItem('tafelen-thisUser'),
                     new:{
                         table: chair.parentElement.getAttribute('data-table'),
                         chair: chair.getAttribute('data-chair')
@@ -195,27 +201,30 @@
                 })
             }
         },
-        seat: (chair)=>{
+        seat: (chair,name)=>{
             chair = document.querySelector(`[data-chair=${chair}]`)
+            chair.querySelector('.classroom__chair--label').textContent = name
             chair.classList.add('seated')
         },
         clearChair: (chair)=>{
             chair = document.querySelector(`[data-chair=${chair}]`)
+            chair.querySelector('.classroom__chair--label').textContent = ''
             chair.classList.remove('seated')
         }
     }
     const app = {
         init: () => {
-            if (app.check()) {
-                tables.init()
+            if (app.check()) {                
+                app.initMedia()
                 chat.init()
             }
             popup.init()
+            tables.init()
         },
         check: () => {
             if(!localStorage.getItem('tafelen-thisUser')){
-                localStorage.setItem('tafelen-thisUser',prompt('Wat is je naam') )  
-                popup.activate()
+                localStorage.setItem('tafelen-thisUser',prompt('Wat is je naam? Maikel S.') )  
+                // popup.activate()
             }else{
                 console.log(localStorage.getItem('tafelen-thisUser'))
             }
@@ -300,9 +309,9 @@
     socket.on('user-seated',(data)=>{
         console.log(data)
         if(data.reseated == false){
-            tables.seat(data.new.chair)
+            tables.seat(data.new.chair,data.name)
         }else{
-            tables.seat(data.new.chair)
+            tables.seat(data.new.chair,data.name)
             tables.clearChair(data.old.chair)
         }
     })
@@ -317,6 +326,11 @@
 
     socket.on('render-message',(data)=>{
         chat.render(data)
+    })
+
+    socket.on('user-joined',(data)=>{
+        console.log(data)
+        tables.seat(data.new.chair,data.name)
     })
 
 })()

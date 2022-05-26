@@ -329,7 +329,7 @@ main {
       background-color: #06d6a0; }
 
 .home__heading-content-container {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: auto; }
 
 .home__heading-container {
@@ -343,17 +343,17 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1280px; }
+  max-width: 1400px; }
 
 .home__heading {
   font-size: 3em; }
 
 .home__container {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: auto; }
 
 .classes__heading-content-container {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: auto; }
 
 .classes__heading-container {
@@ -367,17 +367,17 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1280px; }
+  max-width: 1400px; }
 
 .classes__heading {
   font-size: 3em; }
 
 .classes__container {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: auto; }
 
 .classroom__heading-content-container {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: auto; }
 
 .classroom__heading-container {
@@ -391,7 +391,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1280px; }
+  max-width: 1400px; }
 
 .classroom__heading {
   font-size: 3em; }
@@ -461,11 +461,17 @@ main {
 .classroom__chat-container, .classroom__tables-container {
   margin-top: .625rem; }
 
-.classroom__teacher-container, .classroom__chat-container {
+.classroom__teacher-container {
   flex-basis: calc(45% - .625rem); }
 
-.classroom__student-container, .classroom__tables-container {
+.classroom__chat-container {
+  flex-basis: calc(40% - .625rem); }
+
+.classroom__student-container {
   flex-basis: calc(55% - .625rem); }
+
+.classroom__tables-container {
+  flex-basis: calc(60% - .625rem); }
 
 .classroom__student-container {
   display: flex;
@@ -570,12 +576,12 @@ main {
   justify-content: space-between;
   bottom: 1rem;
   left: calc(80px + 1rem);
-  width: 100%;
+  width: calc(100% - 80px - 2rem);
   max-width: 454px; }
 
 .classroom__chat-input {
   padding: .5rem .75rem;
-  width: 400px;
+  width: 85%;
   border-radius: 5px;
   box-shadow: 0 0 15px 5px rgba(39, 38, 53, 0.05); }
 
@@ -642,7 +648,7 @@ main {
   padding-right: 1rem; }
 
 .classroom__tables-container {
-  padding: 0 1rem 0 calc(80px + 1rem);
+  padding: 0 1rem;
   color: #fff;
   background-color: #f1f1f7; }
 
@@ -681,7 +687,6 @@ main {
   position: absolute;
   height: 3rem;
   width: 3rem;
-  overflow: hidden;
   background-color: #fff;
   border-radius: 5px;
   transition: .3s ease all;
@@ -715,6 +720,54 @@ main {
     transform: translate(-50%, -50%) rotate(270deg); }
     .classroom__chair:nth-of-type(4).seated {
       left: calc(50% - 5rem); }
+  .classroom__chair img {
+    position: absolute;
+    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 130%;
+    width: 130%;
+    border: none; }
+  .classroom__chair:nth-of-type(2) img {
+    transform: translate(-50%, -50%) rotate(-90deg); }
+  .classroom__chair:nth-of-type(3) img {
+    transform: translate(-50%, -50%) rotate(-180deg); }
+  .classroom__chair:nth-of-type(4) img {
+    transform: translate(-50%, -50%) rotate(-270deg); }
+  .classroom__chair span {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    z-index: 99;
+    color: #272635;
+    transition: .5s ease opacity;
+    transition-delay: .1s; }
+  .classroom__chair.seated span {
+    opacity: 1; }
+  .classroom__chair:nth-of-type(1) span {
+    top: -1.5rem;
+    transform: translate(-50%, -50%);
+    text-align: center; }
+  .classroom__chair:nth-of-type(2) span {
+    top: -2.5rem;
+    transform: translate(-50%, -50%) rotate(-90deg); }
+  .classroom__chair:nth-of-type(3) span {
+    top: -1.5rem;
+    transform: translate(-50%, -50%) rotate(-180deg);
+    text-align: center; }
+  .classroom__chair:nth-of-type(4) span {
+    top: -2.5rem;
+    text-align: right;
+    transform: translate(-50%, -50%) rotate(-270deg); }
+  .classroom__chair-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0 0 5px 5px; }
   .classroom__chair-input {
     display: none; }
 
@@ -725,7 +778,7 @@ main {
   transform: translate(-50%, -50%); }
 
 .messages__heading-content-container {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: auto; }
 
 .messages__heading-container {
@@ -739,17 +792,17 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1280px; }
+  max-width: 1400px; }
 
 .messages__heading {
   font-size: 3em; }
 
 .messages__container {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: auto; }
 
 .workgroups__heading-content-container {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: auto; }
 
 .workgroups__heading-container {
@@ -763,14 +816,34 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1280px; }
+  max-width: 1400px; }
 
 .workgroups__heading {
   font-size: 3em; }
 
 .workgroups__container {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: auto; }
+
+.seating__heading-content-container {
+  max-width: 1400px;
+  margin: auto; }
+
+.seating__heading-container {
+  padding: 2rem;
+  color: #fff;
+  background-color: #272635; }
+
+.seating__container {
+  margin: auto;
+  padding: .625rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1400px; }
+
+.seating__heading {
+  font-size: 3em; }
 
 .fb__story {
   position: fixed;

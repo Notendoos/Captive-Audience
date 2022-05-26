@@ -1,0 +1,20 @@
+<% include ../partials/header.ejs %>
+<main class="seating">
+    <div class="seating__heading-container">
+        <div class="seating__heading-content-container">
+            <h1 class="seating__heading">
+                <%= room.name %>
+            </h1>
+        </div>
+    </div>
+    <div class="seating__container">
+        <h1 class="seating__heading">
+            Waar ga je aanschuiven?
+        </h1>
+        <% include ./tablelist.ejs %>
+        <a href="/classes/<%= room.id %>/<%= room.name.replace(/_/,' ') %>">
+            Deelnemen aan de les ->
+        </a>
+    </div>
+</main>
+<% include ../partials/footer.ejs %>

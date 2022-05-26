@@ -4,7 +4,7 @@
         <ul class="classlist__list">
             <% rooms.forEach((room,i)=>{%>
                 <li class="classlist__list-item">
-                    <a class="classlist__link" href="/classes/<%= room.id %>/<%= room.name.replace(/ /g,"_") %>">
+                    <a class="classlist__link" href="/seating?room=<%= room.id %>&name=<%= room.name.replace(/ /g,'_') %>">
                         <div class="classlist__list-container">
                             <span class="classlist__list-item-label classlist__name">
                                 <%= room.name %>
@@ -75,7 +75,7 @@
         <ul class="classlist__list">
             <% roomsNext.forEach((room,i)=>{%>
                 <li class="classlist__list-item">
-                    <a class="classlist__link" href="/classes/<%= room.id %>/<%= room.name.replace(/ /g,"_") %>">
+                    <a class="classlist__link" href="/seating?room=<%= room.id %>&name=<%= room.name.replace(/ /g,'_') %>">
                         <div class="classlist__list-container">
                             <span class="classlist__list-item-label classlist__name">
                                 <%= room.name %>
