@@ -40,7 +40,7 @@ $component: 'classroom';
     }
     &__control-group{
         display: flex;
-        .button{
+        .control-button{
             position: relative;
             height: 3rem;
             width: 3rem;
@@ -341,7 +341,7 @@ $component: 'classroom';
         justify-content: space-between;
     }
     &__tables-list-item{
-        background-color: rgba($color-purple--light,.25);
+        background-color: rgba($color-purple--lighter,.25);
         margin-bottom: 1rem;
         flex-basis: calc(50% - .5rem);
         display: flex;
@@ -380,7 +380,7 @@ $component: 'classroom';
             background-color: $color-purple--light;
         }
         &.personal{
-            background-color: $color-green--dark;
+            background-color: $color-green;
         }    
 
         &:nth-of-type(1){

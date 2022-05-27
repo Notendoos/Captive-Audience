@@ -27,7 +27,6 @@
     myVideo.classList.add('user')
 
     let checkOnce = false
-
     const chat = {
         init: ()=>{
             chatSend.addEventListener('click',()=>{
@@ -59,7 +58,7 @@
             const author = document.createElement('span')
             const date = document.createElement('span')
             const msg = document.createElement('span')
-            const username = data.username.toLowerCase()
+            const username = data.username
 
             messageContainer.classList.add('classroom__chat-message')
             author.classList.add('author')
@@ -85,6 +84,7 @@
                     chatContainer.scrollTop = chatContainer.scrollHeight
                     break;
                 case 'classroom':
+                    author.textContent = document.querySelector('.personal').parentElement.querySelector('.classroom__table-label').textContent + ' - ' + author.textContent
                     chatContainerClassroom.appendChild(messageContainer)
                     chatContainer.scrollTop = chatContainer.scrollHeight
                     break;
@@ -162,12 +162,7 @@
         checkSeat: (chair)=>{
             const personalSeat = document.querySelector('.classroom__chair.personal')
             if(!personalSeat && !chair.classList.contains('seated')){
-                chair.classList.add('seated')
-                chair.classList.add('personal')
-
-                chair.querySelector('.classroom__chair--label').textContent = localStorage.getItem('tafelen-thisUser')
-
-                socket.emit('user-seated',{
+                const chairData = {
                     reseated: false,
                     roomID,
                     name: localStorage.getItem('tafelen-thisUser'),
@@ -175,18 +170,20 @@
                         table: chair.parentElement.getAttribute('data-table'),
                         chair: chair.getAttribute('data-chair')
                     }
-                })
-            }else if(!personalSeat || !chair.classList.contains('seated')){
-                personalSeat.classList.remove('seated')
-                personalSeat.classList.remove('personal')
+                }
 
                 chair.classList.add('seated')
                 chair.classList.add('personal')
 
-                personalSeat.querySelector('.classroom__chair--label').textContent = ''
                 chair.querySelector('.classroom__chair--label').textContent = localStorage.getItem('tafelen-thisUser')
 
-                socket.emit('user-seated',{
+                socket.emit('user-seated',chairData)
+
+                if(!app.check()){
+                    tables.setSeatUri(chairData)
+                }
+            }else if(!chair.classList.contains('seated')){
+                const chairData = {
                     reseated: true,
                     roomID,
                     name: localStorage.getItem('tafelen-thisUser'),
@@ -198,7 +195,22 @@
                         table: personalSeat.parentElement.getAttribute('data-table'),
                         chair: personalSeat.getAttribute('data-chair')
                     }
-                })
+                }
+                personalSeat.classList.remove('seated')
+                personalSeat.classList.remove('personal')
+
+                chair.classList.add('seated')
+                chair.classList.add('personal')
+
+                personalSeat.querySelector('.classroom__chair--label').textContent = ''
+                chair.querySelector('.classroom__chair--label').textContent = localStorage.getItem('tafelen-thisUser')
+
+                
+                socket.emit('user-seated',chairData)
+
+                if(!app.check()){
+                    tables.setSeatUri(chairData)
+                }
             }
         },
         seat: (chair,name)=>{
@@ -210,6 +222,31 @@
             chair = document.querySelector(`[data-chair=${chair}]`)
             chair.querySelector('.classroom__chair--label').textContent = ''
             chair.classList.remove('seated')
+        },
+        setSeatUri: (chair)=>{
+            let url = document.querySelector('.button--url')
+            let origin = url.href.split('?')
+            console.log(url,origin)
+            
+            url.setAttribute('href',origin[0] + `?chair=${chair.new.chair}&table=${chair.new.table}`)
+
+            url.classList.remove('button--disabled')
+        },
+        getSeat: ()=>{
+            const url = new URL(window.location)
+            const params = new URLSearchParams(url.search)
+            console.lg
+            const chairData = {
+                reseated: false,
+                roomID,
+                name: localStorage.getItem('tafelen-thisUser'),
+                new:{
+                    table: params.get('table'),
+                    chair: params.get('chair')
+                }
+            }
+            console.log(chairData)
+            tables.checkSeat(document.querySelector(`[data-chair=${params.get('chair')}]`))
         }
     }
     const app = {
@@ -217,6 +254,7 @@
             if (app.check()) {                
                 app.initMedia()
                 chat.init()
+                tables.getSeat()
             }
             popup.init()
             tables.init()
@@ -224,9 +262,7 @@
         check: () => {
             if(!localStorage.getItem('tafelen-thisUser')){
                 localStorage.setItem('tafelen-thisUser',prompt('Wat is je naam? Maikel S.') )  
-                // popup.activate()
-            }else{
-                console.log(localStorage.getItem('tafelen-thisUser'))
+                popup.activate()
             }
             if (videoContainer) {
                 console.log('classroom')
@@ -332,5 +368,6 @@
         console.log(data)
         tables.seat(data.new.chair,data.name)
     })
+
 
 })()

@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Yeeters",
     "main": "server.js",
-    "scripts": { 
+    "scripts": {
         "dev": "nodemon server.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -38,7 +38,7 @@
         "gulp-uglify": "^3.0.2",
         "node-fetch": "^2.6.0",
         "peer": "^0.6.1",
-        "socket.io": "^2.2.0",
+        "socket.io": "2.2.0",
         "uuid": "^8.3.2"
     }
 }

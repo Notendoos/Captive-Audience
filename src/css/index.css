@@ -328,6 +328,38 @@ main {
     .popup__slide-ball.active {
       background-color: #06d6a0; }
 
+.button {
+  display: inline-block;
+  padding: .5em .75em;
+  font-size: 1.25rem;
+  color: #fff;
+  background-color: #06d6a0;
+  border-bottom: 5px solid #2f7d5f;
+  transition: .1s ease all;
+  cursor: pointer; }
+  .button:hover {
+    transform: translateY(5px);
+    border-bottom: 0px solid #2f7d5f; }
+  .button--full-width {
+    width: 100%;
+    text-align: center; }
+  .button--abs {
+    position: absolute; }
+    .button--abs-bottom {
+      bottom: 0; }
+    .button--abs-left {
+      left: 0; }
+  .button--disabled {
+    filter: grayscale(1);
+    cursor: not-allowed; }
+    .button--disabled:active {
+      pointer-events: none; }
+  .button svg {
+    display: inline-block;
+    top: .1rem;
+    height: 1rem;
+    width: 1rem; }
+
 .home__heading-content-container {
   max-width: 1400px;
   margin: auto; }
@@ -415,33 +447,33 @@ main {
 
 .classroom__control-group {
   display: flex; }
-  .classroom__control-group .button {
+  .classroom__control-group .control-button {
     position: relative;
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
     cursor: pointer; }
-    .classroom__control-group .button:not(:last-child) {
+    .classroom__control-group .control-button:not(:last-child) {
       margin-right: 1rem; }
-    .classroom__control-group .button-sq {
+    .classroom__control-group .control-button-sq {
       border-radius: 5px; }
-    .classroom__control-group .button-purple {
+    .classroom__control-group .control-button-purple {
       background-color: #7d7cde; }
-    .classroom__control-group .button-red {
+    .classroom__control-group .control-button-red {
       background-color: #de2f33; }
-    .classroom__control-group .button-link {
+    .classroom__control-group .control-button-link {
       color: inherit;
       display: block; }
-      .classroom__control-group .button-link:not(:last-child) {
+      .classroom__control-group .control-button-link:not(:last-child) {
         margin-right: 1rem; }
-    .classroom__control-group .button svg {
+    .classroom__control-group .control-button svg {
       position: absolute;
       max-width: 1.75rem;
       max-height: 1.75rem;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%); }
-    .classroom__control-group .button span {
+    .classroom__control-group .control-button span {
       position: absolute;
       right: 0;
       width: 300px;
@@ -450,7 +482,7 @@ main {
       transition: .3s ease all;
       text-align: right;
       pointer-events: none; }
-    .classroom__control-group .button:hover span {
+    .classroom__control-group .control-button:hover span {
       opacity: 1;
       bottom: -1.5rem; }
   .classroom__control-group .status--on {
@@ -659,7 +691,7 @@ main {
   justify-content: space-between; }
 
 .classroom__tables-list-item {
-  background-color: rgba(138, 132, 226, 0.25);
+  background-color: rgba(196, 193, 240, 0.25);
   margin-bottom: 1rem;
   flex-basis: calc(50% - .5rem);
   display: flex;
@@ -695,7 +727,7 @@ main {
   .classroom__chair.seated {
     background-color: #8a84e2; }
   .classroom__chair.personal {
-    background-color: #49ab81; }
+    background-color: #06d6a0; }
   .classroom__chair:nth-of-type(1) {
     top: calc(50% - 6rem);
     left: calc(50%);
@@ -836,11 +868,22 @@ main {
 
 .seating__container {
   margin: auto;
-  padding: .625rem 0;
+  padding: .625rem 2rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 1400px; }
+  flex-direction: column;
+  justify-content: center; }
+
+.seating__flex-container {
+  max-width: 1400px;
+  width: 100%;
+  margin: auto;
+  padding: 2rem 0; }
+
+.seating .button {
+  position: absolute;
+  top: 2rem;
+  right: 0; }
 
 .seating__heading {
   font-size: 3em; }

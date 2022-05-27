@@ -8,13 +8,18 @@
         </div>
     </div>
     <div class="seating__container">
-        <h1 class="seating__heading">
-            Waar ga je aanschuiven?
-        </h1>
-        <% include ./tablelist.ejs %>
-        <a href="/classes/<%= room.id %>/<%= room.name.replace(/_/,' ') %>">
-            Deelnemen aan de les ->
-        </a>
+        <div class="seating__flex-container">
+            <h1 class="seating__heading">
+                Waar ga je aanschuiven?
+            </h1>
+            <% include ./tablelist.ejs %>
+            <a class="button button--url button--disabled" href="./classes/<%= room.id %>/<%= room.name.replace(/_/,' ') %>?">
+                <span>
+                    Deelnemen aan de les
+                    <% include ../svg/enterClass.ejs %>
+                </span>
+            </a>
+        </div>
     </div>
 </main>
 <% include ../partials/footer.ejs %>

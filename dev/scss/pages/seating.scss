@@ -12,12 +12,24 @@ $component: 'seating';
     }
     &__container{
         margin: auto;
-        padding: .625rem 0;
+        padding: .625rem 2rem;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
-        max-width: $max-width;
+        flex-direction: column;
+        justify-content: center;
     }
+    &__flex-container{
+        max-width: $max-width;
+        width: 100%;
+        margin: auto;
+        padding: 2rem 0;
+    }
+    .button{
+        position: absolute;
+        top: 2rem;
+        right: 0;
+    }
+
     &__heading{
         font-size: 3em;
     }
