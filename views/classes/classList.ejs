@@ -24,8 +24,17 @@
                         </span>
                         <% if(typeof room.present !== "undefined"){ %>
                         <div class="classlist__list-container">
-                            <span class="classlist__present-label">Al aanwezig</span>
+                            <% if(room.present.teacher.present && room.present.students.present){ %>
+                            <span class="classlist__present-label">
+                                Al aanwezig
+                            </span>
+                            <% } %>
                             <div class="classlist__present-container">
+                                <% if(!room.present.teacher.present && !room.present.students.present){ %>
+                                    <div class="">
+                                        <span>Nog niemand aanwezig...<br><br></span>
+                                    </div>
+                                <% } %>
                                 <% if(room.present.teacher.present){ %>
                                 <div class="">
                                     <span>Docent</span>

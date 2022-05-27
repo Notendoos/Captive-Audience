@@ -28,16 +28,16 @@ let roomsData = [
         name:"Internet Standaarden",
         teacher:"B. McMillan",
         timestamp:{
-            start: "15:00",
-            end:"16:30"
+            start: "12:00",
+            end:"15:30"
         },
         present:{
             teacher:{
-                present:true,
+                present:false,
                 image:`${baseUrl}/pf7.png`
             },
             students:{
-                present:true,
+                present:false,
                 amount: 3,
                 images:[`${baseUrl}/pf2.png`,`${baseUrl}/pf3.png`,`${baseUrl}/pf4.png`,`${baseUrl}/pf5.png`,`${baseUrl}/pf6.png`,`${baseUrl}/pf7.png`]
             }
@@ -51,17 +51,17 @@ let roomsData = [
             start: "17:30",
             end:"17:45"
         },
-        present:{
-            teacher:{
-                present:true,
-                image:`${baseUrl}/pf6.png`
-            },
-            students:{
-                present:false,
-                amount: 3,
-                images:[`${baseUrl}/pf2.png`,`${baseUrl}/pf3.png`,`${baseUrl}/pf4.png`,`${baseUrl}/pf5.png`,`${baseUrl}/pf6.png`,`${baseUrl}/pf7.png`]
-            }
-        }
+        // present:{
+        //     teacher:{
+        //         present:true,
+        //         image:`${baseUrl}/pf6.png`
+        //     },
+        //     students:{
+        //         present:false,
+        //         amount: 3,
+        //         images:[`${baseUrl}/pf2.png`,`${baseUrl}/pf3.png`,`${baseUrl}/pf4.png`,`${baseUrl}/pf5.png`,`${baseUrl}/pf6.png`,`${baseUrl}/pf7.png`]
+        //     }
+        // }
     },
 ]
 let roomsDataNext = [
