@@ -374,10 +374,13 @@ $component: 'classroom';
         transition: .3s ease all;
         z-index: 1;
 
+        cursor: pointer;
+
         border-top: 5px solid $color-black;
 
         &.seated{
             background-color: $color-purple--light;
+            cursor: initial;
         }
         &.personal{
             background-color: $color-green;
@@ -387,6 +390,10 @@ $component: 'classroom';
             top: calc(50% - 6rem);
             left: calc(50%);
             transform: translate(-50%,-50%);
+            &:not(.seated):hover{
+                transform: translate(-50%,-50%) scale(.9);
+                box-shadow: 0 0 10px 2px rgba($color-black,.15);
+            }
             &.seated{
                 top: calc(50% - 5rem);
             }
@@ -395,6 +402,10 @@ $component: 'classroom';
             top: calc(50%);
             left: calc(50% + 6rem);
             transform: translate(-50%,-50%) rotate(90deg);
+            &:not(.seated):hover{
+                transform: translate(-50%,-50%) rotate(90deg) scale(.9);
+                box-shadow: 0 0 10px 2px rgba($color-black,.15);
+            }
             &.seated{
                 left: calc(50% + 5rem);
             }
@@ -403,6 +414,10 @@ $component: 'classroom';
             top: calc(50% + 6rem);
             left: calc(50%);
             transform: translate(-50%,-50%) rotate(180deg);
+            &:not(.seated):hover{
+                transform: translate(-50%,-50%) rotate(180deg) scale(.9);
+                box-shadow: 0 0 10px 2px rgba($color-black,.15);
+            }
             &.seated{
                 top: calc(50% + 5rem);
             }
@@ -411,6 +426,10 @@ $component: 'classroom';
             top: calc(50%);
             left: calc(50% - 6rem);
             transform: translate(-50%,-50%) rotate(270deg);
+            &:not(.seated):hover{
+                transform: translate(-50%,-50%) rotate(270deg) scale(.9);
+                box-shadow: 0 0 10px 2px rgba($color-black,.15);
+            }
             &.seated{
                 left: calc(50% - 5rem);
             }
