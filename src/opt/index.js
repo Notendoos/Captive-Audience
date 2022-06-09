@@ -177,6 +177,9 @@
 
                 chair.querySelector('.classroom__chair--label').textContent = localStorage.getItem('tafelen-thisUser')
 
+                console.log(chair.parentElement.parentElement.getBoundingClientRect().top)
+                chair.parentElement.parentElement.parentElement.parentElement.scrollTop = chair.parentElement.parentElement.offsetTop - 16
+
                 socket.emit('user-seated',chairData)
 
                 if(!app.check()){
@@ -205,7 +208,6 @@
                 personalSeat.querySelector('.classroom__chair--label').textContent = ''
                 chair.querySelector('.classroom__chair--label').textContent = localStorage.getItem('tafelen-thisUser')
 
-                
                 socket.emit('user-seated',chairData)
 
                 if(!app.check()){
