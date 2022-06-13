@@ -180,6 +180,14 @@
                 console.log(chair.parentElement.parentElement.getBoundingClientRect().top)
                 chair.parentElement.parentElement.parentElement.parentElement.scrollTop = chair.parentElement.parentElement.offsetTop - 16
 
+                if(document.querySelector('.active-table')){
+                    document.querySelector('.active-table').classList.remove('active-table')
+                    chair.parentElement.parentElement.classList.add('active-table')
+                }else{
+                    chair.parentElement.parentElement.classList.add('active-table')
+                }
+
+
                 socket.emit('user-seated',chairData)
 
                 if(!app.check()){
@@ -207,6 +215,13 @@
 
                 personalSeat.querySelector('.classroom__chair--label').textContent = ''
                 chair.querySelector('.classroom__chair--label').textContent = localStorage.getItem('tafelen-thisUser')
+
+                if(document.querySelector('.active-table')){
+                    document.querySelector('.active-table').classList.remove('active-table')
+                    chair.parentElement.parentElement.classList.add('active-table')
+                }else{
+                    chair.parentElement.parentElement.classList.add('active-table')
+                }
 
                 socket.emit('user-seated',chairData)
 
@@ -263,7 +278,7 @@
         },
         check: () => {
             if(!localStorage.getItem('tafelen-thisUser')){
-                localStorage.setItem('tafelen-thisUser',prompt('Wat is je naam? Maikel S.') )  
+                localStorage.setItem('tafelen-thisUser',prompt('Wat is je naam?') )  
                 popup.activate()
             }
             if (videoContainer) {
